@@ -184,8 +184,8 @@ pub fn ops_with_text_state<'src, T: Resolve>(
     page: &'src Page,
     resolve: &'src T,
 ) -> impl Iterator<Item = (Op, Rc<TextState>)> + 'src {
-    page.contents.iter().flat_map(move |contents| {
-        contents.operations(resolve).unwrap().into_iter().scan(
+    page.contents.iter().filter_map(move |contents| contents.operations(resolve).ok()).flat_map(move |contents| {
+        contents.into_iter().scan(
             (Rc::new(TextState::default()), FontCache::new(page, resolve)),
             |(state, font_cache), op| {
                 let mut update_state = |update_fn: &dyn Fn(&mut TextState)| {
