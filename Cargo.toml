@@ -5,7 +5,7 @@ authors = ["Sebastian K <s3bk@protonmail.com>"]
 edition = "2018"
 
 [dependencies]
-euclid = "0.22.6"
+euclid = "0.22.9"
 log = "*"
 pdf = { version = "0.8.1", features = ["euclid"] }
 pdf_encoding = "0.3.0"
